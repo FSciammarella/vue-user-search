@@ -6,7 +6,7 @@
       type="round"
       role="prev"
     />
-    <input @input="validatePage" type="text" :value="localPage + 1" />
+    <input @input="validatePage" type="text" :value="page + 1" />
     <Button
       :class="page === maxPage ? 'hidden' : ''"
       @click="next"
@@ -19,11 +19,6 @@
 <script>
 import Button from './Button';
 export default {
-  data() {
-    return {
-      localPage: this.page,
-    };
-  },
   components: {
     Button,
   },
@@ -33,25 +28,17 @@ export default {
     maxItems: Number,
     listLength: Number,
   },
-  watch: {
-    page: function() {
-      this.localPage = this.page;
-    },
-  },
   methods: {
     validatePage(evt) {
       let value = parseInt(evt.target.value) ?? 0;
       if (isNaN(value)) value = 0;
       if (value <= 0) {
-        this.localPage = '';
-        this.localPage = 0;
+        evt.target.value = 0;
         this.$emit('changePage', 0);
       } else if (value >= this.maxPage) {
-        this.localPage = '0';
-        this.localPage = this.maxPage;
+        evt.target.value = this.maxPage;
         this.$emit('changePage', this.maxPage);
       } else {
-        this.localPage = value;
         this.$emit('changePage', value);
       }
     },
