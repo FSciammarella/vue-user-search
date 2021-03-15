@@ -122,12 +122,30 @@ li {
   padding: 0.5rem 0 0.5rem 0;
 }
 .container {
+  display: flex;
+  flex-direction: column;
   text-align: left;
-  width: 48%;
+  flex-grow: 1;
+  flex-basis: 45%;
   margin: 0 1% 0 1%;
   border: 1px solid rgba(128, 128, 128, 0.57);
   padding: 3%;
   border-radius: 4px;
   box-shadow: 1px 1px grey;
+}
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 650px) {
+  .bottom {
+    flex-direction: column-reverse;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
 }
 </style>

@@ -79,4 +79,9 @@ label {
   display: flex;
   height: 100%;
 }
+@media (max-width: 1080px) {
+  .submit-btn {
+    display: none;
+  }
+}
 </style>
