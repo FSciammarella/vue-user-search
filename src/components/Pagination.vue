@@ -30,16 +30,16 @@ export default {
   },
   methods: {
     validatePage(evt) {
-      let value = parseInt(evt.target.value) ?? 0;
-      if (isNaN(value)) value = 0;
-      if (value <= 0) {
-        evt.target.value = 0;
+      let value = parseInt(evt.target.value) ?? 1;
+      if (isNaN(value)) value = 1;
+      if (value <= 1) {
+        evt.target.value = 1;
         this.$emit('changePage', 0);
-      } else if (value >= this.maxPage) {
-        evt.target.value = this.maxPage;
+      } else if (value > this.maxPage) {
+        evt.target.value = this.maxPage + 1;
         this.$emit('changePage', this.maxPage);
       } else {
-        this.$emit('changePage', value);
+        this.$emit('changePage', value - 1);
       }
     },
     previous() {
